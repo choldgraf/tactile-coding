@@ -1,0 +1,17 @@
+numpy
+pandas
+requests
+scipy
+matplotlib
+seaborn
+ipywidgets
+
+name: elife
+dependencies:
+  - python=2.7
+  - numpy
+  - requests
+  - scipy
+  - matplotlib
+  - seaborn
+  - ipywidgets

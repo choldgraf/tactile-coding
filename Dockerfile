@@ -1,7 +1,7 @@
 FROM ubuntu:17.04
 
 # Add dependency
-RUN apt-get update && apt-get install --yes python2 python2-dev build-essential python-pip python-setuptools git
+RUN apt-get update && apt-get install --yes python python-dev build-essential python-pip python-setuptools git
 
 # Install Python requirements
 ADD requirements.txt requirements.txt

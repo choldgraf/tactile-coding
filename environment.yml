@@ -1,4 +1,3 @@
-name: elife
 dependencies:
   - python=2.7
   - numpy

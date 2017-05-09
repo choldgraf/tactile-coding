@@ -5,8 +5,9 @@ RUN apt-get update && apt-get install --yes python python-dev build-essential py
 
 RUN  adduser --disabled-password --gecos "Default Jupyter user" jovyan
 
+WORKDIR /home/jovyan
 # Install Python requirements
-ADD requirements.txt requirements.txt
+COPY . /home/jovyan
 
 # Tifffiles requires we install numpy before attempting to install it
 RUN pip install numpy

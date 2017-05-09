@@ -1,3 +1,3 @@
 seaborn
 numpy
-git+https://github.com/thunder-project/thunder.git@master
+thunder-python

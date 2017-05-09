@@ -3,6 +3,8 @@ FROM ubuntu:17.04
 # Add dependency
 RUN apt-get update && apt-get install --yes python python-dev build-essential python-pip python-setuptools git
 
+RUN  adduser --disabled-password --gecos "Default Jupyter user" jovyan
+
 # Install Python requirements
 ADD requirements.txt requirements.txt
 

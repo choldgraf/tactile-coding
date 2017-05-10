@@ -1,0 +1,31 @@
+Electrophysiology in barrel cortex during corridor tracking
+===========================================================
+
+To examine other cortical layers, and to verify the response properties
+observed with calcium imag- ing, we made extracellular recordings from
+barrel cortex in a separate group of mice running through the winding
+corridor (Figure 4a) (13 mice). We used 32-channel single shank silicon probes
+
+.. figure:: figures/figure_4.png
+   :target: http://binder.yuvi.in/
+
+   Figure 4
+
+in mice expressing ChR2-eYFP in layer 4 neurons (Scnn1a-Tg3-Cre x Ai32).
+We targeted recordings to barrel field by visualizing the eYFP
+fluorescence during surgery. The probe was coated with DiI, allowing us
+to reconstruct the probe location within the barrel cortex (Figure 4b).
+Recordings were clustered around the C2 barrel (Figure 4—figure
+supplement 1a). Current source density analysis triggered on layer 4
+activation of ChR2 and electrolytic lesions were used to calibrate
+the laminar location of the probe and determine the depth of the
+recorded neurons (Figure 4—figure supple- ment 1b). Recordings spanned
+layer 2 to layer 5, although the majority of units were located in
+infra- granular layers (Figure 4—figure supplement 2a). Baseline and
+peak spike rates were higher in deeper layer neurons (Figure 4—figure
+supplement 2b,c). Spike sorting was performed manually, and both false
+alarm rate of the inter-spike-interval distribution < 1.5% and waveform
+SNR > 6 were used as quality control metrics (Figure 4—figure supplement
+1c,f). As with the imaging experi- ments, analysis was restricted to
+periods of running (speed > 3 cm/s), ensuring the mice were actively
+whisking (Sofroniew et al., 2014).

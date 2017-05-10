@@ -12,52 +12,58 @@ from scipy.interpolate import UnivariateSpline
 sns.set_context('paper', font_scale=2.0)
 sns.set_style('ticks')
 
-def hist(vals, bins=10, horizontal=False, xlabel=None, ylabel=None, xinvert=False, yinvert=False):
+def hist(vals, bins=10, horizontal=False, xlabel=None, ylabel=None, xinvert=False, yinvert=False, ax=None):
     """
     Plot a histogram with simple formatting options
     """
+    if ax is None:
+        fig, ax = plt.subplots()
+
     if horizontal:
         orientation = 'horizontal'
     else:
         orientation = 'vertical'
-    plt.hist(vals, bins=bins, rwidth=0.8, color=[0.7,0.7,0.7], edgecolor='none', orientation=orientation)
+    ax.hist(vals, bins=bins, rwidth=0.8, color=[0.7,0.7,0.7], edgecolor='none', orientation=orientation)
     if xlabel:
-        plt.xlabel(xlabel)
+        ax.set_xlabel(xlabel)
     if ylabel:
-        plt.ylabel(ylabel)
+        ax.set_ylabel(ylabel)
     if xinvert:
-        plt.gca().invert_xaxis()
+        ax.invert_xaxis()
     if yinvert:
-        plt.gca().invert_yaxis()
+        ax.invert_yaxis()
     sns.despine()
 
-def scatter(x, y, equal=False, xlabel=None, ylabel=None, xinvert=False, yinvert=False):
+def scatter(x, y, equal=False, xlabel=None, ylabel=None, xinvert=False, yinvert=False, ax=None):
     """
     Plot a scatter with simple formatting options
     """
-    plt.scatter(x, y, 200, color=[0.3, 0.3, 0.3], edgecolors='white', linewidth=1, zorder=2)
+    if ax is None:
+        fig, ax = plt.subplots()
+
+    ax.scatter(x, y, 200, color=[0.3, 0.3, 0.3], edgecolors='white', linewidth=1, zorder=2)
     sns.despine()
     if xlabel:
-        plt.xlabel(xlabel)
+        ax.set_xlabel(xlabel)
     if ylabel:
-        plt.ylabel(ylabel)
+        ax.set_ylabel(ylabel)
     if equal:
-        plt.axes().set_aspect('equal')
+        ax.set_aspect('equal')
         bmin = min([x.min(), y.min()])
         bmax = max([x.max(), y.max()])
-        plt.plot([min(bmin,0), bmax], [min(bmin,0), bmax], color=[0.6, 0.6, 0.6], zorder=1)
+        ax.plot([min(bmin,0), bmax], [min(bmin,0), bmax], color=[0.6, 0.6, 0.6], zorder=1)
         rng = abs(bmax - bmin)
-        plt.xlim([bmin - rng*0.05, bmax + rng*0.05])
-        plt.ylim([bmin - rng*0.05, bmax + rng*0.05])
+        ax.set_xlim([bmin - rng*0.05, bmax + rng*0.05])
+        ax.set_ylim([bmin - rng*0.05, bmax + rng*0.05])
     else:
         xrng = abs(x.max() - x.min())
         yrng = abs(y.max() - y.min())
-        plt.xlim([x.min() - xrng*0.05, x.max() + xrng*0.05])
-        plt.ylim([y.min() - yrng*0.05, y.max() + yrng*0.05])
+        ax.set_xlim([x.min() - xrng*0.05, x.max() + xrng*0.05])
+        ax.set_ylim([y.min() - yrng*0.05, y.max() + yrng*0.05])
     if xinvert:
-        plt.gca().invert_xaxis()
+        ax.invert_xaxis()
     if yinvert:
-        plt.gca().invert_yaxis()
+        ax.invert_yaxis()
 
 def smoothfit(x, y, smooth=0, res=1000):
     """
@@ -93,30 +99,32 @@ def smootharray(vals, smooth=0, res=1000):
     normed = asarray([f/nanmax(f) for f in smoothed])
     return normed
 
-def tuning(x, y, err=None, smooth=None, ylabel=None, pal=None, label='Wall distance (mm)'):
+def tuning(x, y, err=None, smooth=None, ylabel=None, pal=None, label='Wall distance (mm)',
+    ax=None):
     """
     Plot a tuning curve
     """
+    if ax is None:
+        fig, ax = plt.subplots()
     if smooth is not None:
         xs, ys = smoothfit(x, y, smooth)
-        plt.plot(xs, ys, linewidth=4, color='black', zorder=1)
+        ax.plot(xs, ys, linewidth=4, color='black', zorder=1)
     else:
         ys = asarray([0])
     if pal is None:
         pal = sns.color_palette("husl", n_colors=len(x) + 6)
         pal = pal[2:2+len(x)][::-1]
-    plt.scatter(x, y, s=300, linewidth=0, color=pal, zorder=2)
+    ax.scatter(x, y, s=300, linewidth=0, color=pal, zorder=2)
     if err is not None:
-        plt.errorbar(x, y, yerr=err, linestyle="None", ecolor='black', zorder=1)
-    plt.xlabel(label)
-    plt.ylabel(ylabel)
-    plt.xlim([-2.5,32.5])
+        ax.errorbar(x, y, yerr=err, linestyle="None", ecolor='black', zorder=1)
     errTmp = err
-    errTmp[isnan(err)]  = 0
+    errTmp[isnan(err)] = 0
     rng = max([nanmax(ys), nanmax(y + errTmp)])
-    plt.ylim([0 - rng*0.1, rng + rng*0.1])
-    plt.yticks(linspace(0,rng,3))
-    plt.xticks(range(0,40,10));
+
+    ax.set(xlabel=label, ylabel=ylabel,
+           xlim=[-2.5, 32.5], ylim=[0 - rng*0.1, rng + rng*0.1])
+    ax.set_yticks(linspace(0,rng,3))
+    ax.set_xticks(range(0,40,10))
     sns.despine()
     return rng
 
@@ -170,13 +178,15 @@ def pairedtime(t1, y1, t2, y2):
     sns.despine()
     plt.gca().get_yaxis().set_visible(False)
 
-def heatmap(vals, size=6, aspect=1, vmin=0, vmax=1):
+def heatmap(vals, size=6, aspect=1, vmin=0, vmax=1, ax=None):
     """
     Plot a heatmap from matrix data
     """
-    plt.figure(figsize=(size,size))
-    plt.imshow(vals, cmap='gray', aspect=aspect, interpolation='none', vmin=vmin, vmax=vmax)
-    plt.axis('off')
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(size, size))
+    ax.imshow(vals, cmap='gray', aspect=aspect, interpolation='none', vmin=vmin, vmax=vmax)
+    ax.set_axis_off()
+    return ax
 
 def pairedheatmap(vals1, vals2, size=6, aspect=1):
     """

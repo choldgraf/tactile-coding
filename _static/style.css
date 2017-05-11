@@ -1,0 +1,11 @@
+div.figure {
+    text-align: center;
+}
+
+div.figure img {
+    border: 1px solid;
+}
+
+div.figure span.caption-text {
+    font-size: .8em;
+}

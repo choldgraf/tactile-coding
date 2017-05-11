@@ -1,6 +1,8 @@
 Electrophysiology in barrel cortex during corridor tracking
 ===========================================================
 
+\...
+
 To examine other cortical layers, and to verify the response properties
 observed with calcium imag- ing, we made extracellular recordings from
 barrel cortex in a separate group of mice running through the winding
@@ -34,6 +36,8 @@ SNR > 6 were used as quality control metrics (Figure 4—figure supplement
 periods of running (speed > 3 cm/s), ensuring the mice were actively
 whisking (Sofroniew et al., 2014).
 
+\...
+
 IFrame Demo
 ===========
 
@@ -44,4 +48,4 @@ IFrame Demo
 .. raw:: html
 
    <br />
-   <iframe src="http://binder.yuvi.in" style="width:80%; height:500px"></iframe>
+   <iframe src="http://binder.yuvi.in" style="width:90%; height:500px; border:1px solid"></iframe>

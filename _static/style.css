@@ -9,3 +9,7 @@ div.figure img {
 div.figure span.caption-text {
     font-size: .8em;
 }
+
+iframe {
+    border: 1px solid;
+}

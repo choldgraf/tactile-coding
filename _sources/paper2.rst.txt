@@ -1,0 +1,21 @@
+Encoding and Decoding Models of Cognitive Electrophysiology
+===========================================================
+
+\...
+
+The following sections describe common feature representations that have been used for building linearized encoding and decoding models in cognitive electrophysiology. They reflect a restricted set of questions about stimulus transformations in the brain drawn from the literature and  are not an exhaustive set of possible questions. Also note that it is possible to use other neural signals as inputs to an encoding model (for example, an autoregressive model uses past timepoints of the signal being predicted as input, which is useful for finding autocorrelations, repeating patterns, and functional connectivity metrics (Bressler & Seth, 2011)). However, this article focuses on external stimuli.
+
+.. image:: http://mybinder.org/badge.svg
+   :target: http://binder.yuvi.in/?url=https://github.com/choldgraf/paper-encoding_decoding_electrophysiology&ref=master&filepath=index.ipynb&submit=true
+
+.. figure:: figures/figure_features.png
+    :width: 70 %
+
+    Figure 2 – Feature extraction. Several common auditory representations are shown for the same natural speech utterance (A). For instance, the raw audio waveform (A) can be low-pass filtered and squared to extract the speech envelope (B). Alternatively, a frequency decomposition of the raw auditory waveform can be used to generate a spectrogram that reflects spectrotemporal fluctuations over time (E). A two-dimensional Gabor decomposition of the spectrogram itself can be used to create the Modulation Power Spectrum of the stimulus (F). Alternatively, one may code the auditory stimulus with a categorical variable corresponding to linguistic features such as the presence of phonemes (C) or words (D). These may be used to investigate the brain’s response to higher-order features.
+
+Encoding models
+---------------
+
+Encoding models define model inputs by decomposing the raw stimulus (be it an image, an audio stream, etc.) into either well-defined high-level features with both a direct relationship with the physical world linked with a particular percept (e.g. spectrogram modulations, center frequencies, cepstral coefficients) or statistical descriptions of these features (e.g., principal or independent components). This is in contrast to a classic approach that builds receptive field maps using spectrograms of white noise used for stimulus generation. The classic approach works well for neural activity in low-level sensory cortex (Marmarelis & Marmarelis, 1978) but results in sub-optimal models for higher-level cortical areas due to the fact that white noise contains no higher-level structure (David, 2004)
+
+\...

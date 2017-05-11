@@ -6,6 +6,9 @@ observed with calcium imag- ing, we made extracellular recordings from
 barrel cortex in a separate group of mice running through the winding
 corridor (Figure 4a) (13 mice). We used 32-channel single shank silicon probes
 
+.. image:: http://mybinder.org/badge.svg
+   :target: http://binder.yuvi.in/
+
 .. figure:: figures/figure_4.png
    :target: http://binder.yuvi.in/
    :width: 70 %
@@ -34,6 +37,11 @@ whisking (Sofroniew et al., 2014).
 IFrame Demo
 ===========
 
+.. image:: http://mybinder.org/badge.svg
+   :target: http://binder.yuvi.in/
+
+
 .. raw:: html
 
+   <br />
    <iframe src="http://binder.yuvi.in" style="width:80%; height:500px"></iframe>
